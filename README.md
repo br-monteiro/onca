@@ -45,15 +45,20 @@ pode ser usada em produção.
 
 #### Dados de Acesso (login)
 User: admin
+
 pass: admin123
 
 ### Requisitos
 Server Apache 2 >= V2.*
+
 PHP5 >= V5.3 (Recomendando >= 5.5)
+
 MySQL 5.5
 
 ### Créditos
 Esta aplicação foi orgulhosamente desenvolvida em uma distribuição Linux por:
+
 Bruno Monteiro - bruno.monteirodg@gmail.com
+
 Orientado pelo Professor Antonio Lobato - alobato@gmail.com
 
