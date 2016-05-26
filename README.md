@@ -15,7 +15,7 @@ Agora abra o arquivo de configuração:
       sudo gedit  /etc/apache2/sites-available/default
 ```
 
-Procure no seu arquivo a entrada **AllowOverride None**, no meu caso estava na linha 11.
+Procure no seu arquivo a entrada **AllowOverride None**.
 
 Altere esse valor para **AllowOverride All** .
 Salve o arquivo e reinicie o Apache.
@@ -23,7 +23,7 @@ Salve o arquivo e reinicie o Apache.
       sudo /etc/init.d/apache2 restart
 ```
 
-Para que a aplicação rode normalmente, recomendamdos que o servidor aponte para o diretório `public_html`
+Para que a aplicação rode normalmente, recomendamdos que o servidor aponte para o diretório `public_html`.
 Logo após estes procedimentos, é preciso alterar o domínio padrão usado através do arquivo localisado em
 `App/Config/Config.conf.php`:
 ```php
@@ -51,7 +51,7 @@ pass: admin123
 ### Requisitos
 Server Apache 2 >= V2.*
 
-PHP5 >= V5.3 (Recomendando >= 5.5)
+PHP5 >= V5.3 (Recomendado >= 5.5)
 
 MySQL 5.5
 
