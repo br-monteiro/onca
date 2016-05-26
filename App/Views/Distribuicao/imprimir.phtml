@@ -1,0 +1,92 @@
+<style>
+    table{
+        margin: 0px auto;
+    }
+    .header{
+        padding: 5px;
+        text-align: center;
+    }
+    .content{
+        padding-top: 50px;
+        text-align: justify;        
+    }
+    .assinatura{
+        margin-top: 100px !important;
+        margin: 0px auto;
+        text-align: center;
+        border-top: 1px solid #000;
+        width: 80%;
+        font-size: 10px;
+    }
+    .assinatura-box{
+        width: 50%;
+    }
+</style>
+<table>
+    <tr>
+        <td colspan="2" class="header">
+            <p><img src="<?=DIRIMG?>logotipo.jpg" width="120"></p>
+            <p>PROJETO ONÇA-PINTADA</p>
+            <p>DECLARAÇÃO DE RECEBIMENTO</p>
+            <p>&nbsp</p>
+            <p>&nbsp</p>
+            <p style="text-align: right;">
+                <?php
+                    $mes['01'] = 'janeiro';
+                    $mes['02'] = 'fevereiro';
+                    $mes['03'] = 'março';
+                    $mes['04'] = 'abril';
+                    $mes['05'] = 'maio';
+                    $mes['06'] = 'junho';
+                    $mes['07'] = 'julho';
+                    $mes['08'] = 'agosto';
+                    $mes['09'] = 'setembro';
+                    $mes['10'] = 'outubro';
+                    $mes['11'] = 'novembro';
+                    $mes['12'] = 'dezembro';
+                    
+                    $mes = $mes[date("m")];
+                ?>
+                Belém-PA, <?=date("d") . " de " . $mes . " de " . date("Y")?>.
+            </p>
+            <p>&nbsp</p>
+            <p style="text-align: left;">
+                Distribuição Código:
+                <strong>
+                    <?=$this->view->result['codigo']?>
+                </strong>
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <p class="content">
+                &nbsp;&nbsp;&nbsp;&nbsp;Eu, <?=strtoupper($this->view->result['responsavel_nome'])?>,
+                responsável pela <?=$this->view->result['sigla']. ' - ' . $this->view->result['nome']?>,
+                <strong>DECLARO</strong> ter recebido do <strong>Projeto Onça-Pintada</strong> a quantia de
+                <?=$this->view->result['quantidade'] . ' ' . $this->view->result['uf']?> de
+                <?=$this->view->result['tipo'] . ' - ' . $this->view->result['caracteristica']?>
+                em <?=date("d-m-Y", $this->view->result['data'])?>.
+            </p>
+        </td>
+    </tr>
+    <tr>
+        <td class="assinatura-box">
+            <p class="assinatura">
+                <?=strtoupper($this->view->result['responsavel_nome'])?><br>
+                <?=$this->view->result['sigla']. ' - ' . $this->view->result['nome']?><br>
+                Responsável
+            </p>
+        </td>
+        <td class="assinatura-box">
+            <p class="assinatura">
+                <?=strtoupper($this->view->userLoggedIn['name'])?><br>
+                PROJETO ONÇA-PINTADA<br>
+                Representante
+            </p>
+        </td>
+    </tr>
+</table>
+<script>
+    window.print();
+</script>

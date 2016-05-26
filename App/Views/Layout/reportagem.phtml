@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Bruno Monteiro">
+
+    <title>
+        <?php
+            echo isset($this->view->title)? $this->view->title : '' ;
+            echo ' :: '.APPNAM.' '.APPVER.' ::';
+        ?>    
+    </title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="<?=ATTACH;?>bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="<?=DIRCSS?>ie10-viewport-bug-workaround.css" rel="stylesheet">
+    
+    <!-- estylo padrão testa página -->
+    <link href="<?=DIRCSS?>denuncia_style.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="<?=ATTACH;?>font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#"><?=APPNAM . ' ' . APPVER?></a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active">
+                <a href="<?=APPDIR?>acesso/"><i class="fa fa-lock"></i> Efetuar Login</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-star"></i> Créditos</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-group"></i> Sobre nós</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-envelope"></i> Contato</a>
+            </li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container">
+        <?=$this->content();?>
+    </div><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="<?=ATTACH;?>jquery/dist/jquery.min.js"></script>
+    <script src="<?=ATTACH;?>jqueryForm/jquery.form.js"></script>
+    <script src="<?=ATTACH;?>bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="<?=DIRJS_?>upload_imagem.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="<?=DIRJS_?>ie10-viewport-bug-workaround.js"></script>
+    <script>
+        (function() {
+
+            var bar = $('.bar');
+            var percent = $('.percent');
+            var status = $('#status');
+
+            $('form').ajaxForm({
+                beforeSend: function() {
+                    status.empty();
+                    var percentVal = '0%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                uploadProgress: function(event, position, total, percentComplete) {
+                    var percentVal = percentComplete + '%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                success: function() {
+                    var percentVal = '100%';
+                    bar.width(percentVal);
+                    percent.html(percentVal);
+                },
+                complete: function(xhr) {
+                    status.html(xhr.responseText);
+                }
+            }); 
+
+        })();
+    </script>
+</body>
+
+</html>
+

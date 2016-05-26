@@ -1,0 +1,68 @@
+<!-- Page Content -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Cooperativa</h3>
+                <i class="fa fa-list"></i> <?=$this->view->title;?><br>
+                <a href="<?=$this->view->controller;?>novo/" class="btn btn-info">
+                    <i class="fa fa-asterisk"></i> Novo Registro
+                </a>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Sigla</th>
+                            <th>CNPJ/CPF</th>
+                            <th>Endereço</th>
+                            <th>Fones</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->view->result as $value): ?>
+                        <tr>
+                            <td><?=$value['sigla'];?></td>
+                            <td><?=$value['cnpj_cpf'];?></td>
+                            <td><?=$value['endereco'];?></td>
+                            <td><?=$value['fone_fixo'];?>, <?=$value['fone_celular'];?></td>
+                            <td>
+                                <a href="<?=$this->view->controller;?>editar/id/<?=$value['id'];?>" class="btn btn-success">
+                                    <i class="fa fa-edit"></i> Editar
+                                </a>
+                                <a href="#"
+                                   onclick="confirmar('Deseja REMOVER este registro?', '<?=$this->view->controller;?>eliminar/id/<?=$value['id'];?>')"
+                                   class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Eliminar
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="<?=$this->view->controller;?>visualizar/pagina/<?=$this->view->btn['previus'];?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <?php foreach ($this->view->btn['link'] as $value): ?>
+                        <li><a href="<?=$this->view->controller;?>visualizar/pagina/<?=$value;?>"><?=$value;?></a></li>
+                        <?php endforeach;?>
+                        <li>
+                            <a href="<?=$this->view->controller;?>visualizar/pagina/<?=$this->view->btn['next'];?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

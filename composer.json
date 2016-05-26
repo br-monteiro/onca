@@ -1,0 +1,24 @@
+{
+    "name":"HTR/Firebird-Framework",
+    "description":"Framework desenvolvido por Bruno Monteiro",
+    "minimum-stability":"stable",
+    "require": {
+        "php": ">=5.3",
+        "respect/validation": "0.7.*@dev",
+        "rah/danpu": "2.6.*",
+        "rych/phpass": "3.0.*@beta"
+    },
+    "minimum-stability": "alpha",
+    "authors": [
+        {
+            "name": "Bruno MOnteiro",
+            "email": "bruno.monteirodg@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "HTR" : "vendor",
+            "App" : "./"
+        }
+    }
+}

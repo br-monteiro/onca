@@ -1,0 +1,177 @@
+[
+    {
+        "name": "respect/validation",
+        "version": "0.7.x-dev",
+        "version_normalized": "0.7.9999999.9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/Respect/Validation.git",
+            "reference": "9dbb9f96cf637224f3b59d83a4980e304e9c24f9"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/Respect/Validation/zipball/9dbb9f96cf637224f3b59d83a4980e304e9c24f9",
+            "reference": "9dbb9f96cf637224f3b59d83a4980e304e9c24f9",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "~4.0",
+            "symfony/validator": "~2.6",
+            "zendframework/zend-validator": "~2.3"
+        },
+        "suggest": {
+            "ext-bcmath": "Arbitrary Precision Mathematics",
+            "ext-mbstring": "Multibyte String Functions"
+        },
+        "time": "2015-04-24 22:18:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "0.7-dev"
+            }
+        },
+        "installation-source": "source",
+        "autoload": {
+            "psr-4": {
+                "Respect\\Validation\\": "library/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD Style"
+        ],
+        "authors": [
+            {
+                "name": "Respect/Validation Contributors",
+                "homepage": "https://github.com/Respect/Validation/graphs/contributors"
+            }
+        ],
+        "description": "The most awesome validation engine ever created for PHP",
+        "homepage": "http://respect.li",
+        "keywords": [
+            "respect",
+            "validation",
+            "validator"
+        ]
+    },
+    {
+        "name": "rah/danpu",
+        "version": "2.6.2",
+        "version_normalized": "2.6.2.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/gocom/danpu.git",
+            "reference": "5ddf4518bbd159617efbe5c8a634ed9875ed700d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/gocom/danpu/zipball/5ddf4518bbd159617efbe5c8a634ed9875ed700d",
+            "reference": "5ddf4518bbd159617efbe5c8a634ed9875ed700d",
+            "shasum": ""
+        },
+        "require": {
+            "ext-pdo": "*",
+            "php": ">=5.3.0"
+        },
+        "require-dev": {
+            "phpunit/phpunit": "3.7.*",
+            "satooshi/php-coveralls": "0.6.*",
+            "squizlabs/php_codesniffer": "1.5.*"
+        },
+        "suggest": {
+            "ext-zlib": "*"
+        },
+        "time": "2013-12-22 00:11:55",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "2.x-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "Rah\\Danpu\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Jukka Svahn",
+                "homepage": "https://github.com/gocom",
+                "role": "Developer"
+            }
+        ],
+        "description": "Zero-dependency MySQL dump library for easily exporting and importing databases",
+        "homepage": "https://github.com/gocom/danpu",
+        "keywords": [
+            "backup",
+            "database",
+            "db",
+            "dump",
+            "export",
+            "import",
+            "library",
+            "mysql",
+            "mysqldump",
+            "restore",
+            "sql"
+        ]
+    },
+    {
+        "name": "rych/phpass",
+        "version": "v3.0.0beta1",
+        "version_normalized": "3.0.0.0-beta1",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/rchouinard/phpass.git",
+            "reference": "f94d30f6ea9ead98ea9497818cbbb28db730ea7d"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/rchouinard/phpass/zipball/f94d30f6ea9ead98ea9497818cbbb28db730ea7d",
+            "reference": "f94d30f6ea9ead98ea9497818cbbb28db730ea7d",
+            "shasum": ""
+        },
+        "require": {
+            "ext-hash": "*",
+            "php": ">=5.3.8"
+        },
+        "suggest": {
+            "ext-mcrypt": "The Mcrypt extension is used as a source of cryptographically strong random data in the absence of ext-openssl.",
+            "ext-openssl": "The OpenSSL extension is used as the default source of cryptographically strong random data."
+        },
+        "time": "2012-08-14 03:45:21",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "psr-0": {
+                "PHPassLib": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Ryan Chouinard",
+                "email": "rchouinard@gmail.com",
+                "homepage": "http://ryanchouinard.com"
+            }
+        ],
+        "description": "PHP Password Library: Easy, secure password management for PHP",
+        "homepage": "https://github.com/rchouinard/phpass",
+        "keywords": [
+            "cryptography",
+            "password",
+            "security"
+        ]
+    }
+]

@@ -1,0 +1,59 @@
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-tasks fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <?php foreach ($this->view->resultColetaGrafico as $value):?>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <p>
+                                        <strong style="font-size: 10px"><?=$value['caracteristica']?></strong>
+                                        <?php
+                                            $porcentagem = (int) $value['quantidade'] / $value['quantidade_inicial'] * 100;
+                                            $porcentagem = $porcentagem != 100 ? 100 - $porcentagem : 0;
+                                        ?>
+                                        <span class="pull-right text-muted"><?=$porcentagem?>% Distribuído</span>
+                                    </p>
+                                    <div class="progress progress-striped active">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?=$porcentagem?>" aria-valuemin="0" aria-valuemax="100" style="width: <?=$porcentagem?>%">
+                                            <span class="sr-only"><?=$porcentagem?>% Distribuído</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <?php endforeach;?>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="<?=APPDIR?>coleta/">
+                                <strong>Ver coletas disponíveis</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-tasks -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="<?=APPDIR?>acesso/editar/id/<?=$this->view->userLoggedIn['id']?>">
+                                <i class="fa fa-user fa-fw"></i> <?=$this->view->userLoggedIn['name']?>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="<?=APPDIR;?>acesso/logout/"><i class="fa fa-remove fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->

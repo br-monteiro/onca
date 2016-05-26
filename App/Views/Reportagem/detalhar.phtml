@@ -1,0 +1,58 @@
+<style>
+    .map {
+        margin: 0px auto;
+    }
+    img {
+        width: 100%;
+        height: 240px;
+        margin: 0px auto;
+        display: inline-block;
+    }
+</style>
+<!-- Page Content -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Reportagens</h3>
+                <a href="<?=APPDIR;?>reportagem" class="btn btn-danger"><i class="fa fa-reply"></i> Retornar</a><br>
+                <i class="fa fa-eye"></i> <?=$this->view->title;?>
+                <p>&nbsp;</p>
+                <div id="mapholder" class="map"></div>
+                <?php
+                    $imagem = 'uploads/' . $this->view->result['id'] . '.jpg';
+                    $imagem = file_exists($imagem) ? APPDIR . $imagem : DIRIMG.'sem-foto.gif';
+                ?>
+                <br>
+                <a href="#" class="thumbnail">
+                    <img src="<?=$imagem;?>">
+                </a>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+<script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script>
+function showPosition() {
+    lat = <?=$this->view->result['lat'];?>;
+    lon = <?=$this->view->result['lon'];?>;
+    latlon = new google.maps.LatLng(lat, lon);
+    mapholder = document.getElementById('mapholder');
+    mapholder.style.width = '100%';
+    mapholder.style.height = '300px';
+
+    var myOptions = {
+        center:latlon,zoom:18,
+        mapTypeId:google.maps.MapTypeId.ROADMAP,
+        mapTypeControl:false,
+        navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+    };
+    var map = new google.maps.Map(document.getElementById("mapholder"),myOptions);
+    var marker = new google.maps.Marker({position:latlon,map:map,title:"Você está aqui"});
+}
+showPosition();
+</script>

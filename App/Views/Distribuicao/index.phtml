@@ -1,0 +1,75 @@
+<!-- Page Content -->
+<div id="page-wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <h3>Distribuição de Material</h3>
+                <i class="fa fa-list"></i> <?=$this->view->title;?><br>
+                <a href="<?=$this->view->controller;?>novo/" class="btn btn-info">
+                    <i class="fa fa-asterisk"></i> Nova Distribuição
+                </a>
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Data</th>
+                            <th>Cooperativa</th>
+                            <th>Material</th>
+                            <th>UF</th>
+                            <th>Quantidade</th>
+
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->view->result as $value): ?>
+                        <tr>
+                            <td><?=$value['codigo'];?></td>
+                            <td><?=date("d-m-Y", $value['data']);?></td>
+                            <td><?=$value['sigla'];?></td>
+                            <td><?=$value['caracteristica'];?></td>
+                            <td><?=$value['uf'];?></td>
+                            <td><?=$value['quantidade'];?></td>
+
+                            <td>
+                                <a href="<?=$this->view->controller;?>imprimir/id/<?=$value['id'];?>" class="btn btn-primary" target="_blank">
+                                    <i class="fa fa-print"></i> Imprimir
+                                </a>
+                                <a href="#"
+                                   onclick="confirmar('Deseja CANCELAR esta distribuição?', '<?=$this->view->controller;?>cancelar/id/<?=$value['id'];?>')"
+                                   class="btn btn-danger">
+                                    <i class="fa fa-trash"></i> Cancelar
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="<?=$this->view->controller;?>visualizar/pagina/<?=$this->view->btn['previus'];?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <?php foreach ($this->view->btn['link'] as $value): ?>
+                        <li><a href="<?=$this->view->controller;?>visualizar/pagina/<?=$value;?>"><?=$value;?></a></li>
+                        <?php endforeach;?>
+                        <li>
+                            <a href="<?=$this->view->controller;?>visualizar/pagina/<?=$this->view->btn['next'];?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
