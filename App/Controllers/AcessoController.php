@@ -8,7 +8,7 @@ namespace App\Controllers;
 use HTR\System\ControllerAbstract as Controller;
 use HTR\Interfaces\ControllerInterface as CtrlInterface;
 use HTR\Helpers\Access\Access;
-use App\Models\ColetaModel as Coleta;
+use App\Models\ColetaModel;
 
 class AcessoController extends Controller implements CtrlInterface
 {
@@ -38,7 +38,7 @@ class AcessoController extends Controller implements CtrlInterface
         $this->view->controller = APPDIR.'acesso/';
         // Instancia o Helper que auxilia na proteção e autenticação de usuários
         $this->access = new Access();
-        $coleta = new Coleta;
+        $coleta = new ColetaModel($this->access->pdo);
         $this->view->resultColetaGrafico = $coleta->returnNoEmpty(4);
     }
 
@@ -69,7 +69,7 @@ class AcessoController extends Controller implements CtrlInterface
     {
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Editando Registro';
@@ -87,7 +87,7 @@ class AcessoController extends Controller implements CtrlInterface
     {
         $this->access->authenticAccess([1]);
 
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         $model->remover($this->getParam('id'));
     }
@@ -98,7 +98,7 @@ class AcessoController extends Controller implements CtrlInterface
         // usuários autenticados com o nível 1.
         $this->view->userLoggedIn = $this->access->authenticAccess([1]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Lista de Todos os Usuários';
 
@@ -115,7 +115,7 @@ class AcessoController extends Controller implements CtrlInterface
         // usuários autenticados com o nível 1.
         $this->access->authenticAccess([1]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->novo();
     }
     
@@ -125,7 +125,7 @@ class AcessoController extends Controller implements CtrlInterface
         // usuários autenticados com o nível 1 e 2.
         $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->editar();
     }
     
@@ -142,7 +142,7 @@ class AcessoController extends Controller implements CtrlInterface
     public function logoutAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();  
+        $model = new $this->modelPath($this->access->pdo);  
         $model->logout();
         header('Location:'. APPDIR);
     }
@@ -150,7 +150,7 @@ class AcessoController extends Controller implements CtrlInterface
     public function autenticaAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->login();
     }
 
@@ -164,7 +164,7 @@ class AcessoController extends Controller implements CtrlInterface
 
     public function mudandoSenhaAction()
     {
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $this->access->breakRedirect();
         $user = $this->access->authenticAccess([1,2]);
         $dados['id'] = $user['id'];

@@ -12,7 +12,7 @@ use HTR\System\ModelCRUD as CRUD;
 use HTR\Helpers\Mensagem\Mensagem as msg;
 use HTR\Helpers\Paginator\Paginator;
 use Respect\Validation\Validator as v;
-use App\Models\ColetaModel as Coleta;
+use App\Models\ColetaModel;
 use App\Helpers\Util as u;
 
 class DistribuicaoModel extends CRUD
@@ -29,7 +29,12 @@ class DistribuicaoModel extends CRUD
 
     private $resultadoPaginator;
     private $navPaginator;
-    
+
+    public function __construct(\PDO $pdo = null)
+    {
+        parent::__construct($pdo);
+    }
+
     public function deleteByColtasId($idColetas)
     {
         $stmt = $this->pdo->prepare("DELETE FROM {$this->entidade} WHERE coletas_id = {$idColetas}");
@@ -124,7 +129,7 @@ class DistribuicaoModel extends CRUD
         $this->notDuplicate();
         
         // instancia o Model de coleta
-        $coleta = new Coleta;
+        $coleta = new ColetaModel($this->pdo);
         $dados = $coleta->findById($this->getColetasId());
         
         // valida a quantidade a ser retirada para que o solicitado nunca ultrapasse o disponível

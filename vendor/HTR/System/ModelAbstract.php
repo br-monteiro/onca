@@ -24,14 +24,14 @@ abstract class ModelAbstract
      *
      * @var \PDO Intância de PDO
      */
-    protected $pdo;
+    public $pdo;
 
-    public function __construct()
+    public function __construct(\PDO $pdo = null)
     {
         if (class_exists('\App\Config\DatabaseConfig')) {
             $configDb = new Config();
             $this->db = new DB($configDb->db);
-            $this->pdo = $this->db->connect();
+            $this->pdo = $this->db->connect($pdo);
             // Efetua o Backup do Banco de Dados
             new BKP($configDb->db);
         } else {

@@ -31,6 +31,11 @@ class AcessoModel extends CRUD
     // Recebe o Array de links da navegação da paginação
     private $navPaginator;
     
+    public function __construct(\PDO $pdo = null)
+    {
+        parent::__construct($pdo);
+    }
+    
     /*
      * Método uaso para retornar todos os dados da tabela.
      */

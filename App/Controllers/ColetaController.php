@@ -12,7 +12,7 @@ use HTR\System\ControllerAbstract as Controller;
 use HTR\Interfaces\ControllerInterface as CtrlInterface;
 use HTR\Helpers\Access\Access;
 use App\Models\MaterialModel as Material;
-use App\Models\ColetaModel as Coleta;
+use App\Models\ColetaModel;
 
 class ColetaController extends Controller implements CtrlInterface
 {
@@ -44,7 +44,7 @@ class ColetaController extends Controller implements CtrlInterface
         // Inicia a proteção das páginas com permissão de acesso apenas para
         // usuários autenticados com o nível 1 e 2.
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
-        $coleta = new Coleta;
+        $coleta = new ColetaModel($this->access->pdo);
         $this->view->resultColetaGrafico = $coleta->returnNoEmpty(4);
     }
 
@@ -80,7 +80,7 @@ class ColetaController extends Controller implements CtrlInterface
     public function visualizarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Lista de Coletas Disponíveis';
@@ -102,7 +102,7 @@ class ColetaController extends Controller implements CtrlInterface
     public function registraAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->novo();
     }
 
@@ -112,14 +112,14 @@ class ColetaController extends Controller implements CtrlInterface
     public function alteraAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->editar();
     }
     
     public function cancelarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->cancelar($this->getParam('id'));
     }
 }

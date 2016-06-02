@@ -11,7 +11,7 @@ namespace App\Controllers;
 use HTR\System\ControllerAbstract as Controller;
 use HTR\Interfaces\ControllerInterface as CtrlInterface;
 use HTR\Helpers\Access\Access;
-use App\Models\ColetaModel as Coleta;
+use App\Models\ColetaModel;
 
 class CooperativaController extends Controller implements CtrlInterface
 {
@@ -43,7 +43,7 @@ class CooperativaController extends Controller implements CtrlInterface
         // Inicia a proteção das páginas com permissão de acesso apenas para
         // usuários autenticados com o nível 1.
         $this->view->userLoggedIn = $this->access->authenticAccess([1]);
-        $coleta = new Coleta;
+        $coleta = new ColetaModel($this->access->pdo);
         $this->view->resultColetaGrafico = $coleta->returnNoEmpty(4);
     }
 
@@ -75,7 +75,7 @@ class CooperativaController extends Controller implements CtrlInterface
     public function editarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Editando Registro';
@@ -92,7 +92,7 @@ class CooperativaController extends Controller implements CtrlInterface
     public function eliminarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->remover($this->getParam('id'));
     }
 
@@ -102,7 +102,7 @@ class CooperativaController extends Controller implements CtrlInterface
     public function visualizarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Lista de Todos os Registros de Cooperativa';
@@ -124,7 +124,7 @@ class CooperativaController extends Controller implements CtrlInterface
     public function registraAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->novo();
     }
 
@@ -134,7 +134,7 @@ class CooperativaController extends Controller implements CtrlInterface
     public function alteraAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $model->editar();
     }
 }

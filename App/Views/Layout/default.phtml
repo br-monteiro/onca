@@ -82,6 +82,10 @@
     <script type="text/javascript">
         function resetForm(){
             document.getElementById("form").reset();
+            setInterval("clearMsg()",2000);
+        }
+        function clearMsg(){
+            $("#resultado").empty();            
         }
         function focusOn(idCampo){
             //document.getElementsById( nameCampo ).focus();
@@ -107,6 +111,7 @@
         $(document).ready(function() {
             $('#form').submit(function() { 
                 var dados = $(this).serialize();
+                $("#resultado").html("<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i> Enviando...<span class='sr-only'>Enviando...</span>");
                 $.ajax({
                     type: "POST", // Tipo de metodo
                     url: $(this).attr("action"), //Recebe o valor da action do form

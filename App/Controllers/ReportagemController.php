@@ -11,7 +11,7 @@ namespace App\Controllers;
 use HTR\System\ControllerAbstract as Controller;
 use HTR\Interfaces\ControllerInterface as CtrlInterface;
 use HTR\Helpers\Access\Access;
-use App\Models\ColetaModel as Coleta;
+use App\Models\ColetaModel;
 
 class ReportagemController extends Controller implements CtrlInterface
 {
@@ -40,7 +40,7 @@ class ReportagemController extends Controller implements CtrlInterface
         $this->modelPath ='App\\Models\\ReportagemModel';
         // Instancia o Helper que auxilia na proteção e autenticação de usuários
         $this->access = new Access();
-        $coleta = new Coleta;
+        $coleta = new ColetaModel($this->access->pdo);
         $this->view->resultColetaGrafico = $coleta->returnNoEmpty(4);
     }
 
@@ -60,7 +60,7 @@ class ReportagemController extends Controller implements CtrlInterface
     public function novoAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->novo();
     }
 
@@ -68,7 +68,7 @@ class ReportagemController extends Controller implements CtrlInterface
     {
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->solucionar($this->getParam('id'));
     }
 
@@ -76,7 +76,7 @@ class ReportagemController extends Controller implements CtrlInterface
     {
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
         $this->view->result = $model->findById($this->getParam('id'));
         $this->view->title = 'Visualisando Reportagem Cód.: ' . $this->view->result['codigo'];
         $this->render("detalhar");
@@ -89,7 +89,7 @@ class ReportagemController extends Controller implements CtrlInterface
     {
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Lista de Reportagens não solucionadas';
@@ -109,7 +109,7 @@ class ReportagemController extends Controller implements CtrlInterface
     {
         $this->view->userLoggedIn = $this->access->authenticAccess([1,2]);
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->descartar($this->getParam('id'));
     }
 }

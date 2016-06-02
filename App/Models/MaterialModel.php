@@ -24,6 +24,11 @@ class MaterialModel extends CRUD
 
     private $resultadoPaginator;
     private $navPaginator;
+    
+    public function __construct(\PDO $pdo = null)
+    {
+        parent::__construct($pdo);
+    }
 
     /**
      * Retorna todos os valores da tabela

@@ -26,6 +26,11 @@ class ReportagemModel extends CRUD
 
     private $resultadoPaginator;
     private $navPaginator;
+    
+    public function __construct(\PDO $pdo = null)
+    {
+        parent::__construct($pdo);
+    }
 
     private function upload($dados, $id)
     {

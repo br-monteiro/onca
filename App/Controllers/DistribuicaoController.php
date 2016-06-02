@@ -11,8 +11,8 @@ namespace App\Controllers;
 use HTR\System\ControllerAbstract as Controller;
 use HTR\Interfaces\ControllerInterface as CtrlInterface;
 use HTR\Helpers\Access\Access;
-use App\Models\CooperativaModel as Cooperativa;
-use App\Models\ColetaModel as Coleta;
+use App\Models\CooperativaModel;
+use App\Models\ColetaModel;
 
 class DistribuicaoController extends Controller implements CtrlInterface
 {
@@ -46,7 +46,7 @@ class DistribuicaoController extends Controller implements CtrlInterface
         // Inicia a proteção das páginas com permissão de acesso apenas para
         // usuários autenticados com o nível 1.
         $this->view->userLoggedIn = $this->access->authenticAccess([1]);
-        $this->coleta = new Coleta;
+        $this->coleta = new ColetaModel($this->access->pdo);
         $this->view->resultColetaGrafico = $this->coleta->returnNoEmpty(4);
     }
 
@@ -68,7 +68,7 @@ class DistribuicaoController extends Controller implements CtrlInterface
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Novo Registro';
         
-        $cooperativa = new Cooperativa;
+        $cooperativa = new CooperativaModel($this->access->pdo);
         $this->view->resultCooperativa = $cooperativa->returnAll();
         $this->view->resultColeta = $this->coleta->returnNoEmpty();
         
@@ -83,7 +83,7 @@ class DistribuicaoController extends Controller implements CtrlInterface
     public function visualizarAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();
+        $model = new $this->modelPath($this->access->pdo);
 
         // Atribui título à página através do atributo padrão '$this->view->title'
         $this->view->title = 'Lista de Todos os Registros de Distribuicao';
@@ -105,7 +105,7 @@ class DistribuicaoController extends Controller implements CtrlInterface
     public function registraAction()
     {
         // Instanciando o Model padrão usado.
-        $model = new $this->modelPath();    
+        $model = new $this->modelPath($this->access->pdo);    
         $model->novo();
     }
 

@@ -41,11 +41,18 @@ class Database
 
     /**
      * 
-     * @return \PDO
+     * @param \PDO $pdo Recebe um objeto PDO de uma conexão realizar anteriormente
+     * @return type \PDO Objeto PDO
      * @throws \Exception
      */
-    public function connect()
+    public function connect(\PDO $pdo = null)
     {
+        if ($pdo != null) {
+            // reaproveita a conexão aberta anteriormente
+            $this->pdo = $pdo;
+            return $this->pdo;
+        }
+
         try {
             if ($this->config['sqlite'] == null) {
                 $this->pdo = new \PDO(

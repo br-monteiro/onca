@@ -12,7 +12,7 @@ use HTR\System\ModelCRUD as CRUD;
 use HTR\Helpers\Mensagem\Mensagem as msg;
 use HTR\Helpers\Paginator\Paginator;
 use Respect\Validation\Validator as v;
-use App\Models\DistribuicaoModel as Distribuicao;
+use App\Models\DistribuicaoModel;
 
 class ColetaModel extends CRUD
 {
@@ -27,10 +27,19 @@ class ColetaModel extends CRUD
 
     private $resultadoPaginator;
     private $navPaginator;
+    
+    /**
+     * Construtor do Model
+     * @param \PDO $pdo Recebe uma instância do PDO
+     */
+    public function __construct(\PDO $pdo = null)
+    {
+        parent::__construct($pdo);
+    }
 
     public function cancelar($id)
     {
-        $distibuicao = new Distribuicao;
+        $distibuicao = new DistribuicaoModel($this->pdo);
         $distibuicao->deleteByColtasId($id);
         if (parent::remover($id)) {
             header('Location: '.APPDIR.'coleta/');
