@@ -88,10 +88,18 @@
             var bar = $('.bar');
             var percent = $('.percent');
             var status = $('#status');
-
+            var progress = $('.progress');
+            $('.compartilhar').on('click', function() {
+                $('.compartilhamento-content').css('display', 'none');
+                $('form, .map').css('display', 'inline-block');
+                getLocation();
+            });
+            $('.bs-example-modal-sm').modal('show');
             $('form').ajaxForm({
                 beforeSend: function() {
                     status.empty();
+                    status.html("<i class='fa fa-spinner fa-pulse fa-3x fa-fw'></i> Enviando...<span class='sr-only'>Enviando...</span>");
+                    progress.css("display", "inline-block");
                     var percentVal = '0%';
                     bar.width(percentVal);
                     percent.html(percentVal);
