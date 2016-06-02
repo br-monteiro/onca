@@ -152,8 +152,7 @@ class DistribuicaoModel extends CRUD
             msg::showMsg('A distribuição foi efetuada com sucesso!<br>'
                     . "Deseja <a href=\"".APPDIR."distribuicao/imprimir/id/{$id}\"
                         class=\"btn btn-primary\" target=\"_blank\">
-                        <i class=\"fa fa-print\"></i> Imprimir</a> a declaração?"
-                    . "<script>resetForm();</script>", 'success');
+                        <i class=\"fa fa-print\"></i> Imprimir</a> a declaração?", 'success');
         }
     }
 
